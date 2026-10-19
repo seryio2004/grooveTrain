@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta content="#f7d915" name="theme-color"/>
+<title>grooveTrain · entrenamiento rítmico</title>
+<link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body>
+<div class="shell">
+<header class="top"><div class="brand"><span class="brandmark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>grooveTrain</div></header>
+
+<div class="layout">
+<main aria-label="grooveTrain, juego de bloques rítmicos" class="stage">
+<div class="stage-head"><span class="tinycaps">◉ RHYTHM TRAINING</span><span class="stage-tag" id="stageTag">LISTO PARA JUGAR</span></div>
+<h2 class="stage-title" id="phaseTitle">¿Preparado para tocar?</h2>
+<p class="stage-subtitle" id="phaseSubtitle">Genera tu nivel, escucha las figuras y trata de repetir cada golpe a tiempo.</p>
+<div class="time-indicator"><span id="bpmBig">95</span> BPM <span style="opacity:.6">•</span> 4/4</div>
+<div class="level-label" id="levelCaption">NIVEL 01 / 10</div>
+<div aria-label="Seleccionar nivel" class="level-squares" id="levelSquares"></div>
+<div aria-label="Cuadrícula de 16 figuras rítmicas" class="board" id="board"></div>
+<div class="board-note" id="boardNote">16 bloques · 4 compases · Cada bloque ocupa 1 pulso</div>
+<div class="train-zone">
+  <div class="train-track" id="trainTrack" role="progressbar" aria-label="Tren del groove: progreso de los 16 pulsos" aria-valuemin="0" aria-valuemax="16" aria-valuenow="0">
+    <div class="train-sleepers" id="trainSleepers" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="train-rails" aria-hidden="true"></div>
+    <div class="train-runner" id="trainRunner" aria-hidden="true">
+      <svg viewBox="0 0 188 80" xmlns="http://www.w3.org/2000/svg" focusable="false">
+        <g class="smoke"><circle cx="126" cy="13" r="5"/><circle cx="116" cy="6" r="3.4"/><circle cx="107" cy="2" r="2.5"/></g>
+        <path d="M3 58V34H50V58ZM52 58V28H99V58Z" fill="#e79c7b" stroke="#191a1d" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M4 33H50M52 27H99" fill="none" stroke="#191a1d" stroke-width="5"/>
+        <rect x="13" y="40" width="24" height="12" rx="4" fill="#ffe3a5" stroke="#191a1d" stroke-width="2"/>
+        <path d="M22 49v-6m0 1 7-2v6" fill="none" stroke="#191a1d" stroke-width="2.1" stroke-linecap="round"/>
+        <rect x="62" y="36" width="27" height="15" rx="4" fill="#c1e6e0" stroke="#191a1d" stroke-width="2"/>
+        <path d="M70 40v9m0-9 8-2v9" fill="none" stroke="#191a1d" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M99 52h13M50 57h2" stroke="#191a1d" stroke-width="4" stroke-linecap="round"/>
+        <rect x="116" y="38" width="42" height="24" rx="7" fill="#6d9cbf" stroke="#191a1d" stroke-width="3"/>
+        <rect x="144" y="19" width="29" height="43" rx="4" fill="#80b586" stroke="#191a1d" stroke-width="3"/>
+        <rect x="150" y="26" width="16" height="13" rx="2" fill="#ffdf6b" stroke="#191a1d" stroke-width="2.5"/>
+        <path d="M141 18h34" stroke="#191a1d" stroke-width="5" stroke-linecap="round"/>
+        <path d="M124 37V22h10v15" fill="#191a1d"/>
+        <path d="M116 36h43" stroke="#191a1d" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="114" cy="50" r="6" fill="#f7db16" stroke="#191a1d" stroke-width="3"/>
+        <path d="M173 50h7l6 12h-13z" fill="#ce8296" stroke="#191a1d" stroke-width="3" stroke-linejoin="round"/>
+        <g class="train-wheels" fill="#26282b" stroke="#191a1d" stroke-width="2.5">
+          <circle cx="13" cy="65" r="9"/><circle cx="41" cy="65" r="9"/>
+          <circle cx="62" cy="65" r="9"/><circle cx="90" cy="65" r="9"/>
+          <circle cx="126" cy="66" r="11"/><circle cx="162" cy="66" r="11"/>
+        </g>
+        <g class="wheel-spokes" stroke="#ffdf69" stroke-width="2.3" stroke-linecap="round">
+          <path d="M13 59v12m-6-6h12M41 59v12m-6-6h12M62 59v12m-6-6h12M90 59v12m-6-6h12M126 58v16m-8-8h16M162 58v16m-8-8h16"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</div>
+<div class="playback-panel">
+<div class="status-line"><div class="status-title" id="statusTitle">01 / Escucha y aprende</div><div class="status-desc" id="statusDesc">Después, tú tocas con metrónomo</div></div>
+<div class="run-actions"><button aria-label="Escuchar el ritmo y repetirlo después con metrónomo" class="primary" id="challengeBtn" type="button">▶ Jugar</button><button aria-label="Escuchar patrón con metrónomo" class="secondary" id="listenBtn" type="button">♫ Escuchar</button><button aria-label="Detener" class="stop" disabled="" id="stopBtn" type="button">■</button></div>
+<div class="input-bay"><button aria-label="Dar un golpe con clic o barra espaciadora" class="tap-button" id="tapBtn" type="button">● Golpe</button><div class="tap-tip" id="tapTip">Durante tu turno, toca aquí, pulsa <strong>ESPACIO</strong> o utiliza el micrófono.</div></div>
+<div class="metrics"><div class="metric">FASE <b id="miniPhase">ESPERA</b></div><div class="metric">PULSO <b id="miniBeat">— / 16</b></div><div class="metric">GOLPES <b id="miniHits">0</b></div></div>
+</div>
+<div aria-live="polite" class="results" id="results"><div class="result-title" id="resultTitle">—</div><div class="result-detail" id="resultDetail"></div><div class="result-list" id="resultList"></div><button class="next-level" id="nextBtn" style="display:none" type="button">Siguiente →</button></div>
+</main>
+<aside class="side">
+<section aria-label="Configuración de ejercicio" class="config">
+<div class="field"><div class="label">Instrumento<span id="instrumentName">Batería</span></div><div class="instruments" id="instruments">
+<button aria-pressed="true" class="inst selected" data-inst="drums" type="button"><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 40 40"><path d="M8 16L5 8M32 16l4-8M6 8l-3-3M36 8l3-3"></path><ellipse cx="20" cy="18" rx="12" ry="5"></ellipse><path d="M8 18v10q12 9 24 0V18M8 28q12 8 24 0"></path></svg>Batería</button>
+<button aria-pressed="false" class="inst" data-inst="guitar" type="button"><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 40 40"><path d="M29 8l7-5 2 2-5 7-5 5c-3 1-5-2-8 1-2 2-1 4-4 7-8 8-18-3-10-11 4-4 7-2 10-4 3-2 2-5 6-6z" transform="translate(0 2)"></path><path d="M13 27l19-19M18 28l-3-3"></path></svg>Guitarra</button>
+<button aria-pressed="false" class="inst" data-inst="bass" type="button"><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 40 40"><path d="M9 29c-1-4 0-6 4-7 4-2 6-3 8-8l7-8 5 5-8 8c-5 2-6 4-8 8-2 5-8 7-11 3-2-2-1-7 3-8"></path><path d="M29 5l5 5M12 29l19-20"></path></svg>Bajo</button></div></div>
+<div class="field"><div class="label">Modo<span id="modeName">Progresión</span></div><div class="mode-switch"><button class="selected" id="levelsMode" type="button">Niveles</button><button id="randomMode" type="button">Aleatorio</button></div></div>
+<div class="field" id="levelField"><div class="label">Dificultad<span id="levelWord">Principiante</span></div><div class="level-control"><button aria-label="Nivel anterior" id="levelDown" type="button">−</button><div><b id="levelValue">01</b><small>DE 10</small></div><button aria-label="Nivel siguiente" id="levelUp" type="button">+</button></div></div>
+<div class="field"><label for="bpmRange">BPM<span class="tempo-value" id="tempoValue">95 BPM</span></label><input class="range" id="bpmRange" max="170" min="50" step="1" type="range" value="95"/></div>
+<div class="field"><div class="label">Entrada<span id="sourceName">Teclado / pantalla</span></div><div class="source-grid"><button class="selected" id="keyboardSource" type="button">⌨ Teclado</button><button id="micSource" type="button">◉ Micro</button></div>
+<div class="mic-setup" id="micSetup"><div class="mic-status" id="micStatus">Utiliza auriculares para que el metrónomo no entre por el micrófono. Detecta ataques, no notas ni afinación.</div><div class="mic-row"><button id="micConnect" type="button">Activar micro</button><button class="disconnect" disabled="" id="micDisconnect" type="button">Desactivar</button></div><div class="mic-meter"><div id="micMeter"></div></div><label class="mic-label" for="micThresh">Sensibilidad<output id="threshText">35</output></label><input class="small-range" id="micThresh" max="90" min="8" type="range" value="35"/><label class="mic-label" for="micOffset">Latencia<output id="offsetText">0 ms</output></label><input class="small-range" id="micOffset" max="120" min="-120" step="5" type="range" value="0"/></div>
+</div>
+<button aria-label="Generar otro patrón" class="regen" id="regenBtn" type="button">↻ Generar</button><button aria-label="Editar figuras en los bloques" class="edit-switch" id="editBtn" type="button">✎ Editar</button>
+</section>
+
+</aside>
+</div>
+
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script defer src="js/figures.js"></script>
+<script defer src="js/train.js"></script>
+<script defer src="js/app.js"></script>
+</body>
+</html>
