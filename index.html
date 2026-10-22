@@ -58,8 +58,8 @@
 </div>
 <div class="playback-panel">
 <div class="status-line"><div class="status-title" id="statusTitle">01 / Escucha y aprende</div><div class="status-desc" id="statusDesc">Después, tú tocas con metrónomo</div></div>
-<div class="run-actions"><button aria-label="Escuchar el ritmo y repetirlo después con metrónomo" class="primary" id="challengeBtn" type="button">▶ Jugar</button><button aria-label="Escuchar patrón con metrónomo" class="secondary" id="listenBtn" type="button">♫ Escuchar</button><button aria-label="Detener" class="stop" disabled="" id="stopBtn" type="button">■</button></div>
-<div class="input-bay"><button aria-label="Dar un golpe con clic o barra espaciadora" class="tap-button" id="tapBtn" type="button">● Golpe</button><div class="tap-tip" id="tapTip">Durante tu turno, toca aquí, pulsa <strong>ESPACIO</strong> o utiliza el micrófono.</div></div>
+<div class="run-actions"><button aria-label="Escuchar el ritmo y repetirlo después con metrónomo" class="primary" id="challengeBtn" type="button">▶ Probar ritmo</button><button aria-label="Escuchar patrón con metrónomo" class="secondary" id="listenBtn" type="button">♫ Escuchar</button><button aria-label="Detener" class="stop" disabled="" id="stopBtn" type="button">■</button></div>
+<div class="input-bay"><button aria-label="Dar un golpe con clic o barra espaciadora" class="tap-button" id="tapBtn" aria-describedby="tapTip" type="button">● Golpe · Espacio</button><div class="tap-tip" id="tapTip">Durante tu turno, toca aquí, pulsa <strong>ESPACIO</strong> o utiliza el micrófono.</div></div>
 <div class="metrics"><div class="metric">FASE <b id="miniPhase">ESPERA</b></div><div class="metric">PULSO <b id="miniBeat">— / 16</b></div><div class="metric">GOLPES <b id="miniHits">0</b></div></div>
 </div>
 <div aria-live="polite" class="results" id="results"><div class="result-title" id="resultTitle">—</div><div class="result-detail" id="resultDetail"></div><div class="result-list" id="resultList"></div><button class="next-level" id="nextBtn" style="display:none" type="button">Siguiente →</button></div>
@@ -74,7 +74,7 @@
 <div class="field" id="levelField"><div class="label">Dificultad<span id="levelWord">Principiante</span></div><div class="level-control"><button aria-label="Nivel anterior" id="levelDown" type="button">−</button><div><b id="levelValue">01</b><small>DE 10</small></div><button aria-label="Nivel siguiente" id="levelUp" type="button">+</button></div></div>
 <div class="field"><label for="bpmRange">BPM<span class="tempo-value" id="tempoValue">95 BPM</span></label><input class="range" id="bpmRange" max="170" min="50" step="1" type="range" value="95"/></div>
 <div class="field"><div class="label">Entrada<span id="sourceName">Teclado / pantalla</span></div><div class="source-grid"><button class="selected" id="keyboardSource" type="button">⌨ Teclado</button><button id="micSource" type="button">◉ Micro</button></div>
-<div class="mic-setup" id="micSetup"><div class="mic-status" id="micStatus">Utiliza auriculares para que el metrónomo no entre por el micrófono. Detecta ataques, no notas ni afinación.</div><div class="mic-row"><button id="micConnect" type="button">Activar micro</button><button class="disconnect" disabled="" id="micDisconnect" type="button">Desactivar</button></div><div class="mic-meter"><div id="micMeter"></div></div><label class="mic-label" for="micThresh">Sensibilidad<output id="threshText">35</output></label><input class="small-range" id="micThresh" max="90" min="8" type="range" value="35"/><label class="mic-label" for="micOffset">Latencia<output id="offsetText">0 ms</output></label><input class="small-range" id="micOffset" max="120" min="-120" step="5" type="range" value="0"/></div>
+<div class="mic-setup" id="micSetup"><div class="mic-status" id="micStatus">Utiliza auriculares para que el metrónomo no entre por el micrófono. Detecta ataques, no notas ni afinación.</div><div class="mic-row"><button id="micConnect" type="button">Activar micro</button><button class="disconnect" disabled="" id="micDisconnect" type="button">Desactivar</button></div><div class="mic-meter" role="meter" aria-label="Nivel del micrófono" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="micMeter"></div></div><div class="mic-feedback" id="micHits">0 ataques</div><label class="mic-label" for="micThresh">Sensibilidad<output id="threshText">35</output></label><input class="small-range" id="micThresh" max="90" min="8" type="range" value="35"/><label class="mic-label" for="micOffset">Compensación de latencia<output id="offsetText">0 ms</output></label><input class="small-range" id="micOffset" max="300" min="-120" step="5" type="range" value="0"/><p class="mic-help">Más sensibilidad detecta golpes suaves. Si los golpes aparecen tarde, aumenta la compensación en ms. Usa auriculares para aislar el metrónomo.</p></div>
 </div>
 <button aria-label="Generar otro patrón" class="regen" id="regenBtn" type="button">↻ Generar</button><button aria-label="Editar figuras en los bloques" class="edit-switch" id="editBtn" type="button">✎ Editar</button>
 </section>
@@ -86,6 +86,7 @@
 <div class="toast" id="toast" role="status"></div>
 <script defer src="js/figures.js"></script>
 <script defer src="js/train.js"></script>
+<script defer src="js/rhythm.js"></script>
 <script defer src="js/app.js"></script>
 </body>
 </html>
